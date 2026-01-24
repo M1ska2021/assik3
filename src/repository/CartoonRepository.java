@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CartoonRepository {
-
-    // Создать новый мультфильм
     public void create(Cartoon cartoon) {
         String sql = "INSERT INTO cartoon (name, episodes, studio) VALUES (?, ?, ?)";
 
@@ -23,11 +21,9 @@ public class CartoonRepository {
             ps.executeUpdate();
 
         } catch (SQLException e) {
-            throw new RuntimeException("Не получается создать мультик", e);
+            throw new RuntimeException("Cannot create movie", e);
         }
     }
-
-    // Получить все мультфильмы
     public List<Cartoon> getAll() {
         List<Cartoon> cartoons = new ArrayList<>();
         String sql = "SELECT * FROM cartoon";
@@ -46,13 +42,11 @@ public class CartoonRepository {
             }
 
         } catch (SQLException e) {
-            throw new RuntimeException("Ошибка при получении данных", e);
+            throw new RuntimeException("Error while receiving data", e);
         }
 
         return cartoons;
     }
-
-    // Найти мультфильм по id
     public Cartoon findById(int id) {
         String sql = "SELECT * FROM cartoon WHERE id = ?";
 
@@ -73,13 +67,10 @@ public class CartoonRepository {
             }
 
         } catch (SQLException e) {
-            throw new RuntimeException("Ошибка при поиске по id", e);
+            throw new RuntimeException("Error while searching by id", e);
         }
-
         return null;
     }
-
-    // Обновить мультфильм по id
     public void update(int id, Cartoon cartoon) {
         String sql = "UPDATE cartoon SET name = ?, episodes = ?, studio = ? WHERE id = ?";
 
@@ -94,11 +85,9 @@ public class CartoonRepository {
             ps.executeUpdate();
 
         } catch (SQLException e) {
-            throw new RuntimeException("Ошибка при обновлении мультика", e);
+            throw new RuntimeException("Error updating cartoon", e);
         }
     }
-
-    // Удалить мультфильм по id
     public void delete(int id) {
         String sql = "DELETE FROM cartoon WHERE id = ?";
 
@@ -109,7 +98,7 @@ public class CartoonRepository {
             ps.executeUpdate();
 
         } catch (SQLException e) {
-            throw new RuntimeException("Не удаляется", e);
+            throw new RuntimeException("Cannot delete", e);
         }
     }
 }

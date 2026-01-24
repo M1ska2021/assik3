@@ -17,16 +17,14 @@ public class CartoonService {
         }
 
         if (cartoon.getEpisodes() <= 0) {
-            throw new InvalidInputException("Episodes must be greater than 0");
+            throw new InvalidInputException("Episodes must be more than 0");
         }
 
         repository.create(cartoon);
     }
-
     public List<Cartoon> getAllCartoons() {
         return repository.getAll();
     }
-
     public Cartoon getById(int id) {
         Cartoon cartoon = repository.findById(id);
 
@@ -35,17 +33,14 @@ public class CartoonService {
                     "Cartoon with id " + id + " not found"
             );
         }
-
         return cartoon;
     }
-
     public void updateCartoon(int id, Cartoon cartoon) {
-        getById(id); // ✅ проверка существования
+        getById(id);
         repository.update(id, cartoon);
     }
-
     public void deleteCartoon(int id) {
-        getById(id); // ✅ проверка существования
+        getById(id);
         repository.delete(id);
     }
 }

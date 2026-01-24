@@ -12,25 +12,21 @@ public class MovieCartoon extends Cartoon {
         super(id, name, 1, studio); // movie = 1 episode
 
         if (duration <= 0) {
-            throw new IllegalArgumentException("Duration must be > 0");
+            throw new IllegalArgumentException("Duration supposed to be more than 0");
         }
 
         this.duration = duration;
     }
-
     public double getDuration() {
         return duration;
     }
-
     public void setDuration(double duration) {
         if (duration <= 0) {
-            throw new IllegalArgumentException("Duration must be > 0");
+            throw new IllegalArgumentException("Duration have to be more than 0");
         }
         this.duration = duration;
     }
-
-    @Override
     public String toString() {
-        return super.toString() + " | duration: " + duration + " min";
+        return super.toString() + " / duration: " + duration + " min";
     }
 }
