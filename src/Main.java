@@ -7,7 +7,8 @@ public class Main {
 
         CartoonRepository repo = new CartoonRepository();
 
-        Cartoon cartoon = new MovieCartoon(0, "Stranger Things", 9,  90);
+        Cartoon cartoon = new MovieCartoon(0, "Stranger Things", "Netflix", 90.0);
+
 
         repo.create(cartoon);
         repo.getAll();
