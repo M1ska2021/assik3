@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CartoonRepository {
+
     public void create(Cartoon cartoon) {
         String sql = "INSERT INTO cartoon (name, episodes, studio) VALUES (?, ?, ?)";
 
@@ -21,9 +22,10 @@ public class CartoonRepository {
             ps.executeUpdate();
 
         } catch (SQLException e) {
-            throw new RuntimeException("Cannot create movie", e);
+            throw new RuntimeException("Cannot create cartoon", e);
         }
     }
+
     public List<Cartoon> getAll() {
         List<Cartoon> cartoons = new ArrayList<>();
         String sql = "SELECT * FROM cartoon";
@@ -47,6 +49,7 @@ public class CartoonRepository {
 
         return cartoons;
     }
+
     public Cartoon findById(int id) {
         String sql = "SELECT * FROM cartoon WHERE id = ?";
 
@@ -71,6 +74,7 @@ public class CartoonRepository {
         }
         return null;
     }
+
     public void update(int id, Cartoon cartoon) {
         String sql = "UPDATE cartoon SET name = ?, episodes = ?, studio = ? WHERE id = ?";
 
@@ -88,6 +92,7 @@ public class CartoonRepository {
             throw new RuntimeException("Error updating cartoon", e);
         }
     }
+
     public void delete(int id) {
         String sql = "DELETE FROM cartoon WHERE id = ?";
 
@@ -98,7 +103,7 @@ public class CartoonRepository {
             ps.executeUpdate();
 
         } catch (SQLException e) {
-            throw new RuntimeException("Cannot delete", e);
+            throw new RuntimeException("Cannot delete cartoon", e);
         }
     }
 }

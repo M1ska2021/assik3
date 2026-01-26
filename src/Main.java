@@ -1,17 +1,22 @@
 import model.Cartoon;
 import model.MovieCartoon;
-import repository.CartoonRepository;
+import service.CartoonService;
 
 public class Main {
     public static void main(String[] args) {
 
-        CartoonRepository repo = new CartoonRepository();
+        CartoonService service = new CartoonService();
 
-        Cartoon cartoon = new MovieCartoon(0, "Stranger Things", "Netflix", 90.0);
+        Cartoon cartoon = new MovieCartoon(
+                0,
+                "Stranger Things",
+                "Netflix",
+                90.0
+        );
 
+        service.createCartoon(cartoon);
 
-        repo.create(cartoon);
-        repo.getAll();
+        service.getAllCartoons()
+                .forEach(System.out::println);
     }
-
 }
