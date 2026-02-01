@@ -1,13 +1,14 @@
 package repository;
 
 import model.Cartoon;
+import repository.interfaces.CrudRepository;
 import utils.DatabaseConnection;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CartoonRepository {
+public class CartoonRepository implements CrudRepository<Cartoon> {
 
     public void create(Cartoon cartoon) {
         String sql = "INSERT INTO cartoon (name, episodes, studio) VALUES (?, ?, ?)";
@@ -28,7 +29,7 @@ public class CartoonRepository {
 
     public List<Cartoon> getAll() {
         List<Cartoon> cartoons = new ArrayList<>();
-        String sql = "SELECT * FROM cartoon";
+        String sql = "SELECT id, name, episodes, studio FROM cartoon";
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql);
@@ -40,18 +41,19 @@ public class CartoonRepository {
                 cartoon.setName(rs.getString("name"));
                 cartoon.setEpisodes(rs.getInt("episodes"));
                 cartoon.setStudio(rs.getString("studio"));
+
                 cartoons.add(cartoon);
             }
 
         } catch (SQLException e) {
-            throw new RuntimeException("Error while receiving data", e);
+            throw new RuntimeException("Error while fetching cartoons", e);
         }
 
         return cartoons;
     }
 
     public Cartoon findById(int id) {
-        String sql = "SELECT * FROM cartoon WHERE id = ?";
+        String sql = "SELECT id, name, episodes, studio FROM cartoon WHERE id = ?";
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -70,8 +72,9 @@ public class CartoonRepository {
             }
 
         } catch (SQLException e) {
-            throw new RuntimeException("Error while searching by id", e);
+            throw new RuntimeException("Error while finding cartoon by id", e);
         }
+
         return null;
     }
 
@@ -89,7 +92,7 @@ public class CartoonRepository {
             ps.executeUpdate();
 
         } catch (SQLException e) {
-            throw new RuntimeException("Error updating cartoon", e);
+            throw new RuntimeException("Cannot update cartoon", e);
         }
     }
 

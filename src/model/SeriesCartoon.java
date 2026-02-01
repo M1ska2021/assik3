@@ -23,4 +23,10 @@ public class SeriesCartoon extends Cartoon {
     public String toString() {
         return super.toString() + " / seasons: " + seasons;
     }
+    public String getType() {
+        return "Series";
+    }
+    public String getDetails() {
+        return "Seasons: " + seasons;
+    }
 }

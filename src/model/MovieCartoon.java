@@ -29,4 +29,10 @@ public class MovieCartoon extends Cartoon {
     public String toString() {
         return super.toString() + " / duration: " + duration + " min";
     }
+    public String getType() {
+        return "Movie";
+    }
+    public String getDetails() {
+        return "Duration: " + duration;
+    }
 }

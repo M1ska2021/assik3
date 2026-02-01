@@ -1,14 +1,18 @@
 package service;
 
 import model.Cartoon;
-import repository.CartoonRepository;
+import repository.interfaces.CrudRepository;
 import exception.*;
 
 import java.util.List;
 
 public class CartoonService {
 
-    private final CartoonRepository repository = new CartoonRepository();
+    private final CrudRepository<Cartoon> repository;
+
+    public CartoonService(CrudRepository<Cartoon> repository) {
+        this.repository = repository;
+    }
 
     public void createCartoon(Cartoon cartoon) {
 
@@ -22,9 +26,11 @@ public class CartoonService {
 
         repository.create(cartoon);
     }
+
     public List<Cartoon> getAllCartoons() {
         return repository.getAll();
     }
+
     public Cartoon getById(int id) {
         Cartoon cartoon = repository.findById(id);
 
@@ -35,12 +41,14 @@ public class CartoonService {
         }
         return cartoon;
     }
+
     public void updateCartoon(int id, Cartoon cartoon) {
-        getById(id);
+        getById(id); // validation
         repository.update(id, cartoon);
     }
+
     public void deleteCartoon(int id) {
-        getById(id);
+        getById(id); // validation
         repository.delete(id);
     }
 }
