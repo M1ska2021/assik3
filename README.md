@@ -1,6 +1,8 @@
  ##Assignment 4 – SOLID Architecture & Advanced OOP
+ 
 Cartoon Management System (Java + JDBC)
 Project Overview
+
  #This project is a refactored version of Assignment 3 and was developed to demonstrate SOLID principles and advanced Object-Oriented Programming features in Java. The application represents a Cartoon Management System that allows creating, reading, updating, and deleting cartoon entities using a layered architecture and a PostgreSQL database.
  #1. SOLID Principles Application
  #Single Responsibility Principle (SRP)
